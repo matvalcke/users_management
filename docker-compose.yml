@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql-container:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_mysql_user
+      MYSQL_PASSWORD: your_mysql_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  php-container:
+    image: php:latest
+    container_name: php-container
+    volumes:
+      - ./your-php-code:/var/www/html
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql-container
+
+volumes:
+  mysql-data:
