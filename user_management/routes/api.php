@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Resources\UserResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+use App\Http\Controllers\ApiController;
+
+//Route::middleware('auth:sanctum')->group(function () {
+
+//});
+
+Route::get('/use', [ApiController::class, 'use']);
+Route::post('/logout', [ApiController::class, 'logout']);
+Route::post('/login', [ApiController::class, 'login']);
+Route::post('/register', [ApiController::class, 'register']);
+Route::post('/update-profile', [ApiController::class, 'updateProfile']);
+Route::post('/delete-account', [ApiController::class, 'deleteAccount']);
