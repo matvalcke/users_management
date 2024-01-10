@@ -7,10 +7,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
 class ApiController extends Controller
 {
-    public function user()
+    public function user(Request $request)
     {
         return User::all();
     }
@@ -56,7 +55,7 @@ class ApiController extends Controller
                 'idRole' => 'required',
                 'lastname' => 'required|max:255',
                 'firstname' => 'required|max:255',
-                'phone',
+                'phone' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users,email,' . $user->idUtilisateur . ',idUtilisateur',
                 'password' => 'required|min:6',
             ]);
@@ -72,7 +71,6 @@ class ApiController extends Controller
             return response()->json(['message' => 'Utilisateur non trouvé.'], 404);
         }
     }
-
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -91,7 +89,13 @@ class ApiController extends Controller
         return response()->json(['token' => $token]);
     }
 
-    // Cette méthode supprime un utilisateur selon son id
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Déconnexion réussie']);
+    }
+
     public function deleteUserById($idUtilisateur)
     {
         $user = User::where('idUtilisateur', $idUtilisateur)->first();
