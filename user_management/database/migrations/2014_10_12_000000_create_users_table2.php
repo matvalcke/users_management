@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('users', function (Blueprint $table) {
             $table->id('idUtilisateur');
-            $table->integer('idRole');
+            $table->foreignId('idRole')->constrained('roles');
             $table->string('lastname');
             $table->string('firstname');
             $table->string('phone');
