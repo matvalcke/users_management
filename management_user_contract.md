@@ -17,17 +17,17 @@
 ```
 
 
-**GET /users**
+**GET /user**
 ----
 Retourne tout les utilisateurs
-* **URL Params**  
+* **URL Params**
   None
-* **Data Params**  
+* **Data Params**
   None
-* **Headers**  
+* **Headers**
   Content-Type: application/json
 * **Success Response:**
-* **Code:** 200  
+* **Code:** 200
   **Content:**
 ```
 {
@@ -74,18 +74,18 @@ Retourne tout les utilisateurs
 }
 ```
 
-**GET /users/:id**
+**GET /user/:id**
 ----
-Retourne des utilisateur spécifique via leur id
-* **URL Params**  
+Retourne des utilisateurs spécifique via leur id
+* **URL Params**
   *Required:* `id=[integer]`
-* **Data Params**  
+* **Data Params**
   None
-* **Headers**  
-  Content-Type: application/json  
+* **Headers**
+  Content-Type: application/json
   Authorization: Bearer `<OAuth Token>`
 * **Success Response:**
-* **Code:** 200  
+* **Code:** 200
   **Content:**  `{ <user_object> }`
 ```
     {
@@ -100,19 +100,19 @@ Retourne des utilisateur spécifique via leur id
     }
 ```
 * **Error Response:**
-    * **Code:** 404  
-      **Content:** `{ error : "L'utilisateur n'existe pas" }`  
+    * **Code:** 404
+      **Content:** `{ error : "L'utilisateur n'existe pas" }`
       OR
-    * **Code:** 401  
+    * **Code:** 401
       **Content:** `{ error : error : "Vous n'êtes pas autorisé à effectuer cette action" }`
 
 
-**POST /users**
+**POST /user**
 ----
 Créer un nouvel utilisateur
-* **URL Params**  
+* **URL Params**
   None
-* **Headers**  
+* **Headers**
   Content-Type: application/json
 * **Data Params**
 ```
@@ -128,16 +128,16 @@ Créer un nouvel utilisateur
   }
 ```
 * **Success Response:**
-* **Code:** 200  
+* **Code:** 200
   **Content:**
 ```
 { reponse: "l'utilisateur à bien été créer"}
 ```
-**PUT /users/:id**
+**PUT /user/:id**
 ----
 Modifier un (des) attribut(s) de l'utilisateur.
 
-* **URL Params**  
+* **URL Params**
   *Required:* `id=[integer]`
 * **Data Params**
 ```
@@ -150,8 +150,8 @@ Modifier un (des) attribut(s) de l'utilisateur.
   }
 ```
 None
-* **Headers**  
-  Content-Type: application/json  
+* **Headers**
+  Content-Type: application/json
   Authorization: Bearer `<OAuth Token>`
 * **Success Response:**
     * **Code:** 204
@@ -169,10 +169,10 @@ None
     }
 ```
 * **Error Response:**
-    * **Code:** 404  
-      **Content:** `{ error : "L'utilisateur n'existe pas" }`  
+    * **Code:** 404
+      **Content:** `{ error : "L'utilisateur n'existe pas" }`
       OR
-    * **Code:** 401  
+    * **Code:** 401
       **Content:** `{ error : error : "Vous n'êtes pas autorisé à faire cette requête." }`
 
 
@@ -180,12 +180,12 @@ None
 ----
 Supprimer l'utilisateur.
 
-* **URL Params**  
+* **URL Params**
   *Required:* `id=[integer]`
-* **Data Params**  
+* **Data Params**
   None
-* **Headers**  
-  Content-Type: application/json  
+* **Headers**
+  Content-Type: application/json
   Authorization: Bearer `<OAuth Token>`
 * **Success Response:**
     * **Code:** 204
@@ -194,9 +194,152 @@ Supprimer l'utilisateur.
     {
       reponse : "L'utilisateur a été supprimé"
     }
+  ```
 * **Error Response:**
-    * **Code:** 404  
-      **Content:** `{ error : "L'utilisateur n'existe pas" }`  
+    * **Code:** 404
+      **Content:** `{ error : "L'utilisateur n'existe pas" }`
       OR
-    * **Code:** 401  
+    * **Code:** 401
       **Content:** `{ error : error : "Vous n'êtes pas autorisé à faire cette requête." }`
+
+
+
+**Get /Login**
+----
+Connexion
+
+* **URL Params**
+  none
+* **Data Params**
+```
+  { "email" : "mattheo.valcke@gmail.com" , "password" : "!!Toto123!!" }
+```
+* **Headers**
+  Content-Type: application/json
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+  * **Code:** 204
+  * **Content:**
+  ```
+    {
+        "idUtilisateur": 1,
+        "idRole": 1,
+        "lastname": "User",
+        "firstname": "Admin",
+        "phone": "0781179643",
+        "email": "mattheo.valcke@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2024-01-23T14:32:55.000000Z",
+        "updated_at": "2024-01-23T14:32:55.000000Z"
+    }
+  ```
+
+* **Error Response:**
+  * **Code:** 404
+    **Content:** `{ error : "L'utilisateur n'existe pas" }`
+    OR
+  * **Code:** 401
+    **Content:** `{ error : error : "Vous n'êtes pas autorisé à faire cette requête." }`
+
+
+** GET /Logout**
+----
+Déconnexion
+
+* **URL Params**
+  none
+* **Data Params**
+```
+  {
+    "email" : "mattheo.valcke@gmail.com",
+    "password" : "!!Toto123!!"
+  }
+```
+* **Headers**
+  Content-Type: application/json
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+  * **Code:** 204
+  * **Content:**
+  ```
+    {
+        reponse : "Vous êtes déconnecté"
+    }
+  ```
+
+* **Error Response:**
+  * **Code:** 404
+    **Content:** `{ error : "L'utilisateur n'existe pas" }`
+    OR
+  * **Code:** 401
+    **Content:** `{ error : error : "Vous n'êtes pas autorisé à faire cette requête." }`
+
+**Logout**
+----
+Déconnexion
+
+* **URL Params**
+  none
+* **Data Params**
+```
+  {
+    "email" : "mattheo.valcke@gmail.com",
+    "password" : "!!Toto123!!"
+  }
+```
+* **Headers**
+  Content-Type: application/json
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+  * **Code:** 204
+  * **Content:**
+  ```
+    {
+        reponse : "Vous êtes déconnecté"
+    }
+  ```
+* **Error Response:**
+  * **Code:** 404
+    **Content:** `{ error : "L'utilisateur n'existe pas" }`
+    OR
+  * **Code:** 401
+    **Content:** `{ error : error : "Vous n'êtes pas autorisé à faire cette requête." }`
+
+
+**POST /verifyToken**
+----
+Vérification du token
+
+* **URL Params**
+  none
+* **Data Params**
+```
+  { "token" : "{le token}"}
+```
+* **Headers**
+  Content-Type: application/json
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+  * **Code:** 204
+  * **Content:**
+  ```
+    {
+        "idUtilisateur": 1,
+        "idRole": 1,
+        "lastname": "User",
+        "firstname": "Admin",
+        "phone": "0781179643",
+        "email": "mattheo.valcke@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2024-01-23T14:32:55.000000Z",
+        "updated_at": "2024-01-23T14:32:55.000000Z"
+    }
+  ```
+
+* **Error Response:**
+  * **Code:** 404
+    **Content:** `{ error : "Le token n'existe pas" }`
+    OR
+  * **Code:** 401
+    **Content:** `{ error : error : "Vous n'êtes pas autorisé à faire cette requête." }`
+
