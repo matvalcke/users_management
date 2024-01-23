@@ -5,7 +5,7 @@ services:
         build:
             context: .
         ports:
-            - "8000:9000" # Mappez le port 9000 du conteneur à votre choix (par exemple, 8000 sur l'hôte)
+            - "8000:8000"
         volumes:
             - .:/var/www/html
         depends_on:
