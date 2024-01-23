@@ -11,3 +11,4 @@ Route::delete('/user/{idUtilisateur}', [ApiController::class, 'deleteUserById'])
 Route::get('/user', [ApiController::class, 'user']);
 Route::post('/user', [ApiController::class, 'createUser'])->middleware('jwt.verify');
 Route::get('/logout', [ApiController::class, 'logout'])->middleware('jwt.verify');
+Route::post('/verifyToken', [ApiController::class, 'verifyToken']);

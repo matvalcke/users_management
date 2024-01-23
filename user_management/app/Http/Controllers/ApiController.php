@@ -108,4 +108,27 @@ class ApiController extends Controller
             return response()->json(['message' => 'Utilisateur non trouvé.'], 404);
         }
     }
+
+    public function verifyToken(Request $request)
+    {
+        $token = $request->input('token');
+
+        try {
+            // Vérification et récupération de l'utilisateur associé au token
+            $user = JWTAuth::setToken($token)->authenticate();
+
+            // Maintenant, $user contient l'utilisateur associé au token
+
+            // Vous pouvez également accéder à l'ID de l'utilisateur avec $user->id
+            // $idRole = $request->input('idRole');
+
+            return response()->json(['user' => $user], 200);
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'Token expiré'], 401);
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'Token invalide'], 401);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'Erreur lors de la vérification du token'], 500);
+        }
+    }
 }
