@@ -1,28 +1,22 @@
-version: '3.8'
+version: '3'
 
 services:
-    mysql-container:
-        image: mysql:latest
-        container_name: mysql_container_user_management
+    web:
+        build:
+            context: .
+        ports:
+            - "8000:9000" # Mappez le port 9000 du conteneur à votre choix (par exemple, 8000 sur l'hôte)
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - db
+
+    db:
+        image: mysql:8.0
         environment:
-            MYSQL_ROOT_PASSWORD: your_root_password
-            MYSQL_DATABASE: your_database_name
-            MYSQL_USER: your_mysql_user
-            MYSQL_PASSWORD: your_mysql_password
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: root
+            MYSQL_PASSWORD:
+            MYSQL_ROOT_PASSWORD:
         ports:
             - "3306:3306"
-        volumes:
-            - mysql-data:/var/lib/mysql
-
-    php-container:
-        image: php:latest
-        container_name: php-container_user_management
-        volumes:
-            - ./your-laravel-code:/var/www/html
-        ports:
-            - "8080:80"
-        depends_on:
-            - mysql-container
-
-volumes:
-    mysql-data:
