@@ -68,9 +68,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 cd users_management/user_management
 composer install
 Créer une db du nom de laravel
+(modifier l'username et le password pour l'accès à la db)
 php artisan migrate
 php artisan db:seed --class=RolesTableSeeder
 php artisan db:seed --class=UsersTableSeeder
 cp .env.example .env
+JWT_SECRET=INeIA5TyjejEFjQMySm4cU3kbZcYmMYRy4fSbzEGOnpUitubIGCU8fFhSqjVNloh (à ajouter au .env)
 php artisan key:generate
 php artisan serve
