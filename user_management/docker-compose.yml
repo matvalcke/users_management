@@ -1,6 +1,23 @@
 version: '3'
 
 services:
+
+    mysql:
+        image: mysql:8
+        container_name: laravel-mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: toto
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: mat
+            MYSQL_PASSWORD: toto
+        volumes:
+            - ./mysql_data:/var/lib/mysql
+            - ./mysql/init.sql:/docker-entrypoint-initdb.d/users_management.sql
+        networks:
+            - laravel-net
+
     web:
         build:
             context: .
@@ -8,15 +25,12 @@ services:
             - "8000:8000"
         volumes:
             - .:/var/www/html
+        command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
         depends_on:
-            - db
+            - mysql
+        networks:
+            - laravel-net
 
-    db:
-        image: mysql:8.0
-        environment:
-            MYSQL_DATABASE: laravel
-            MYSQL_USER: root
-            MYSQL_PASSWORD:
-            MYSQL_ROOT_PASSWORD:
-        ports:
-            - "3306:3306"
+networks:
+    laravel-net:
+        driver: bridge
