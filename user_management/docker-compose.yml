@@ -13,8 +13,7 @@ services:
             MYSQL_USER: mat
             MYSQL_PASSWORD: toto
         volumes:
-            - ./mysql_data:/var/lib/mysql
-            - ./mysql/init.sql:/docker-entrypoint-initdb.d/users_management.sql
+            - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
         networks:
             - laravel-net
 
