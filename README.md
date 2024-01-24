@@ -40,7 +40,7 @@ php artisan db:seed --class=RolesTableSeeder
 ```
 Créer un administrateur
 ```
-php artisan db:seed --class=UserSeeder
+php artisan db:seed --class=UsersTableSeeder
 ```
 
 Pour le JWT Token ajouter la ligne au fichier .env
