@@ -119,7 +119,7 @@ class ApiController extends Controller
 
             // Maintenant, $user contient l'utilisateur associé au token
 
-            // Vous pouvez également accéder à l'ID de l'utilisateur avec $user->id
+            // accés à l'ID de l'utilisateur avec $user->id
             // $idRole = $request->input('idRole');
 
             return response()->json(['user' => $user], 200);
