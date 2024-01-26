@@ -4,14 +4,11 @@
 **User Table**
 ```
 {
-  idUtilisateur: integer
-  idRole: integer
-  lastname : string
-  firstname: string
-  email: string
-  phone : string
-  created_at: datetime(iso 8601)
-  updated_at: datetime(iso 8601)
+  "idRole" : integer
+  "lastname" : "string"
+  "firstname" : "string"
+  "email" : "string"
+  "phone" : "string"
 }
 
 ```
@@ -50,8 +47,8 @@ Retourne tout les utilisateurs
       "idUtilisateur" : 2,
       "idRole": 2,
       "lastname" : "Baude",
-      "firstname" : "Emel
-      "email" : "mimeline@aigrie.fr",
+      "firstname" : "Emeline"
+      "email" : "mimeline@gmail.com",
       "phone" : "06 35 67 43 56",
       "created_at" : "2023-12-6 04:07:31",
       "update_at" : "2024-01-5 09:37:51"
@@ -117,14 +114,12 @@ Créer un nouvel utilisateur
 * **Data Params**
 ```
   {
-    idUtilisateur: integer
-    idRole: integer
-    firstname: string
-    lastname : string
-    email: string
-    phone : string
-    created_at: datetime(iso 8601)
-    updated_at: datetime(iso 8601)
+    "idRole" : integer
+    "firstname" : "string"
+    "lastname" : "string"
+    "email" : "string"
+    "phone" : "string"
+    "password" : "string"
   }
 ```
 * **Success Response:**
@@ -142,11 +137,12 @@ Modifier un (des) attribut(s) de l'utilisateur.
 * **Data Params**
 ```
   {
-    idRole: integer
-    firstname: string
-    lastname : string
-    email: string
-    phone : string
+    "idRole : integer
+    "firstname" : "string"
+    "lastname" : "string"
+    "email" : "string"
+    "phone" : "string"
+    "password" : "string"
   }
 ```
 None
@@ -160,6 +156,7 @@ None
     {
       "idUtilisateur" : 1,
       "idRole": 1,
+      "password" : "string",
       "lastname" : "Valcke",
       "firstname" : "Mathéo",
       "email" : "matheo@free.fr",
@@ -222,15 +219,7 @@ Connexion
   * **Content:**
   ```
     {
-        "idUtilisateur": 1,
-        "idRole": 1,
-        "lastname": "User",
-        "firstname": "Admin",
-        "phone": "0781179643",
-        "email": "mattheo.valcke@gmail.com",
-        "email_verified_at": null,
-        "created_at": "2024-01-23T14:32:55.000000Z",
-        "updated_at": "2024-01-23T14:32:55.000000Z"
+        "key" : <OAuth Token>
     }
   ```
 
@@ -267,37 +256,6 @@ Déconnexion
     }
   ```
 
-* **Error Response:**
-  * **Code:** 404
-    **Content:** `{ error : "L'utilisateur n'existe pas" }`
-    OR
-  * **Code:** 401
-    **Content:** `{ error : error : "Vous n'êtes pas autorisé à faire cette requête." }`
-
-**Logout**
-----
-Déconnexion
-
-* **URL Params**
-  none
-* **Data Params**
-```
-  {
-    "email" : "mattheo.valcke@gmail.com",
-    "password" : "!!Toto123!!"
-  }
-```
-* **Headers**
-  Content-Type: application/json
-  Authorization: Bearer `<OAuth Token>`
-* **Success Response:**
-  * **Code:** 204
-  * **Content:**
-  ```
-    {
-        reponse : "Vous êtes déconnecté"
-    }
-  ```
 * **Error Response:**
   * **Code:** 404
     **Content:** `{ error : "L'utilisateur n'existe pas" }`
