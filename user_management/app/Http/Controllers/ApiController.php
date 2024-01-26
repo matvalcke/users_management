@@ -29,7 +29,6 @@ class ApiController extends Controller
 
         $user = User::create($validatedData);
 
-        // Générer un token JWT pour le nouvel utilisateur
         $token = JWTAuth::fromUser($user);
 
         return response()->json(['user' => $user, 'token' => $token], 201);

@@ -4,7 +4,7 @@ services:
         image: mysql:8
         container_name: laravel-mysql
         ports:
-            - "3306:3306"
+            - "3307:3307"
         environment:
             MYSQL_ROOT_PASSWORD: toto
             MYSQL_DATABASE: laravel
@@ -20,7 +20,7 @@ services:
             context: .
         ports:
             - "8000:8000"
-        command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+        command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
         depends_on:
             - mysql
         networks:
