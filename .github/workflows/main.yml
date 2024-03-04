@@ -1,0 +1,46 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Validation
+      run: |
+        # Insérer les commandes de validation du code (linting, formatting, etc.)
+        # Exemple : npm run lint
+        
+    - name: Tests
+      run: |
+        # Insérer les commandes pour lancer les tests (unitaires, d'intégration, end-to-end, etc.)
+        # Exemple : npm run test
+        
+    - name: Build Docker Images
+      run: |
+        # Insérer les commandes pour générer les images Docker pour chaque service
+        # Exemple : docker build -t mon-service:${GITHUB_SHA::8} ./chemin/vers/service
+        
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Push Docker Images
+      run: |
+        # Insérer les commandes pour pousser les images Docker générées vers Docker Hub
+        # Exemple : docker push mon-service:${GITHUB_SHA::8}
+        
+    - name: Deploy to Docker Swarm
+      run: |
+        # Insérer les commandes pour déployer les services sur Docker Swarm
+        # Exemple : ssh user@server1 "docker stack deploy --compose-file docker-compose.yml mon-service"
+        #            ssh user@server2 "docker stack deploy --compose-file docker-compose.yml mon-service"
