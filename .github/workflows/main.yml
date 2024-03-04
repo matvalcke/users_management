@@ -21,7 +21,7 @@ jobs:
         
     - name: Build Docker Images
       run: |
-        docker build -t mon-service:${GITHUB_SHA::8} ./user_management/
+        docker build -t user_management ./user_management/
         
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
@@ -31,7 +31,7 @@ jobs:
         
     - name: Push Docker Images
       run: |
-        docker push mon-service:${GITHUB_SHA::8}
+        docker push user_management
         
     - name: Deploy to Docker Swarm
       run: |
