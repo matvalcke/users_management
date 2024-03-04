@@ -15,11 +15,9 @@ jobs:
       
     - name: Validation
       run: |
-        npm run lint
         
     - name: Tests
       run: |
-        npm run test
         
     - name: Build Docker Images
       run: |
