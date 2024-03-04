@@ -15,18 +15,15 @@ jobs:
       
     - name: Validation
       run: |
-        # Insérer les commandes de validation du code (linting, formatting, etc.)
-        # Exemple : npm run lint
+        npm run lint
         
     - name: Tests
       run: |
-        # Insérer les commandes pour lancer les tests (unitaires, d'intégration, end-to-end, etc.)
-        # Exemple : npm run test
+        npm run test
         
     - name: Build Docker Images
       run: |
-        # Insérer les commandes pour générer les images Docker pour chaque service
-        # Exemple : docker build -t mon-service:${GITHUB_SHA::8} ./chemin/vers/service
+        docker build -t mon-service:${GITHUB_SHA::8} ./user_management/
         
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
@@ -36,11 +33,9 @@ jobs:
         
     - name: Push Docker Images
       run: |
-        # Insérer les commandes pour pousser les images Docker générées vers Docker Hub
-        # Exemple : docker push mon-service:${GITHUB_SHA::8}
+        docker push mon-service:${GITHUB_SHA::8}
         
     - name: Deploy to Docker Swarm
       run: |
-        # Insérer les commandes pour déployer les services sur Docker Swarm
-        # Exemple : ssh user@server1 "docker stack deploy --compose-file docker-compose.yml mon-service"
-        #            ssh user@server2 "docker stack deploy --compose-file docker-compose.yml mon-service"
+        ssh -i "VALCKE_M.pem" ec2-user@ec2-35-180-69-168.eu-west-3.compute.amazonaws.com
+        ssh -i "VALCKE_M.pem" ec2-user@ec2-35-180-178-112.eu-west-3.compute.amazonaws.com
