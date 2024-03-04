@@ -31,7 +31,7 @@ jobs:
         
     - name: Push Docker Images
       run: |
-        docker push user_management
+        docker push user_management ./user_management/
         
     - name: Deploy to Docker Swarm
       run: |
